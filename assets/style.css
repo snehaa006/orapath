@@ -1,0 +1,181 @@
+/* Orapath — static replica of the Wix site.
+   Layout is measured from the original at a 1440px viewport: horizontal
+   positions and widths are expressed as fractions of 1440 (so the page scales
+   like the Wix grid does), vertical positions and heights are fixed pixels. */
+
+:root {
+  --blue: #5a70a0;
+  --pink: #d7a7c1;
+  --grey: #808080;
+  --hero: rgba(90, 112, 160, 0.8);
+  --hb: Helvetica, "Helvetica Neue", Arial, sans-serif;
+  --avenir: Avenir, "Avenir Next", "Nunito Sans", sans-serif;
+  --madefor: "Wix Madefor Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #fff; }
+body {
+  font-family: var(--hb);
+  font-weight: 700;
+  color: var(--blue);
+  min-width: 320px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+h1, h2, h3, p, blockquote { font-weight: inherit; font-size: inherit; }
+
+/* Absolute positioning helper: --x/--w are px on a 1440 canvas, --y/--h are px. */
+.s { position: relative; width: 100%; }
+.a {
+  position: absolute;
+  left: calc(var(--x) / 1440 * 100%);
+  top: var(--y);
+  width: calc(var(--w) / 1440 * 100%);
+  height: var(--h, auto);
+}
+.cover { object-fit: cover; object-position: 50% 50%; }
+
+.pink { color: var(--pink); }
+.white { color: #fff; }
+.center { text-align: center; }
+.u { text-decoration: underline; }
+
+/* ---------- Header ---------- */
+.site-header { height: 115px; background: #fff; }
+.logo { --x: 26; --y: 23px; --w: 196; font-size: 23px; line-height: 1.3; letter-spacing: -0.01em; }
+.logo a { text-decoration: underline; }
+.menu {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  width: 488px;
+  margin-left: -244px;
+}
+.menu div { display: flex; gap: 8px; margin-bottom: 8px; }
+/* Item widths as laid out by Wix (text width + 21px padding each side). */
+.menu a:nth-child(1) { width: 86px; }
+.menu a:nth-child(2) { width: 106px; }
+.menu a:nth-child(3) { width: 183px; }
+.menu a:nth-child(4) { width: 89px; }
+.menu div + div a:nth-child(1) { width: 278px; }
+.menu div + div a:nth-child(2) { width: 202px; }
+.menu a {
+  flex: none;
+  height: 37px;
+  padding-top: 10px;
+  font-size: 15px;
+  line-height: normal;
+  letter-spacing: 0.05em;
+  text-align: center;
+  white-space: nowrap;
+}
+.login {
+  position: absolute;
+  top: 20px;
+  right: 16px;
+  width: 73px;
+  height: 35px;
+  font-size: 15px;
+  line-height: 22.5px;
+}
+
+/* ---------- Footer ---------- */
+.site-footer { height: 379px; font-size: 13px; line-height: 1.3; }
+.ft-brand { --x: 24; --y: 37px; --w: 188; font-size: 33px; line-height: 1.3; letter-spacing: -0.03em; }
+.ft-news { --x: 956; --y: 37px; --w: 357; font-size: 23px; line-height: 1.3; letter-spacing: -0.01em; }
+.ft-social a { text-decoration: underline; }
+.newsletter { --x: 957; --y: 118px; --w: 380; }
+.copyright {
+  --x: 1000; --y: 340px; --w: 424;
+  font-family: var(--madefor);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 23.4px;
+}
+.copyright a { text-decoration: underline; }
+
+/* ---------- Forms (Wix Forms look) ---------- */
+.field-label { display: block; height: 17px; font-size: 13px; line-height: 16.9px; }
+.field {
+  display: block;
+  width: 100%;
+  height: 35px;
+  margin-top: 8px;
+  border: 1px solid var(--grey);
+  background: #fff;
+  padding: 0 12px;
+  font: 400 14px/1.4 var(--hb);
+  color: #000;
+  border-radius: 0;
+  outline: none;
+}
+textarea.field { height: 92px; padding: 8px 12px; resize: none; }
+.check { display: flex; align-items: flex-start; gap: 12px; font-size: 13px; line-height: 19.5px; }
+.check input {
+  appearance: none;
+  -webkit-appearance: none;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+  border: 1px solid var(--grey);
+  background: #fff;
+  cursor: pointer;
+}
+.check input:checked { background: var(--blue); border-color: var(--blue); box-shadow: inset 0 0 0 3px #fff; }
+.submit {
+  display: block;
+  width: 100%;
+  height: 40px;
+  background: var(--blue);
+  border: 1px solid var(--blue);
+  color: #fff;
+  font-size: 13px;
+  line-height: 15.6px;
+  text-align: center;
+}
+.form-done { display: none; margin-top: 12px; font-size: 13px; }
+form.sent .form-done { display: block; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--blue);
+  border: 1px solid var(--blue);
+  color: #fff;
+  font-size: 16px;
+  line-height: 24px;
+}
+.btn-outline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid var(--blue);
+  font-size: 15px;
+  line-height: 22.5px;
+}
+.rule { border-top: 1px solid var(--grey); height: 5px; }
+.rule-blue { border-top-color: var(--blue); }
+
+/* ---------- Testimonial slideshow (Session page) ---------- */
+.slide { opacity: 0; visibility: hidden; transition: opacity 0.6s, visibility 0.6s; }
+.slide.on { opacity: 1; visibility: visible; }
+.quote { font-size: 26px; line-height: 1.4; letter-spacing: -0.01em; }
+.quote-by { font-size: 20px; line-height: normal; }
+.arrow { --w: 53; --h: 18px; }
+.arrow svg { display: block; width: 53px; height: 15px; }
+.prev svg { transform: scaleX(-1); }
+.dots { position: absolute; top: 1177px; left: 50%; margin-left: -29px; display: flex; gap: 13px; align-items: center; height: 11px; }
+.dot { width: 9px; height: 9px; display: flex; align-items: center; justify-content: center; }
+.dot::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #000; }
+.dot.on::before { width: 9px; height: 9px; background: none; box-shadow: inset 0 0 0 2px #000; }
+
+.contact-form .row { display: grid; grid-template-columns: 1fr 1fr; column-gap: 38px; }

@@ -29,7 +29,8 @@ Paths match the original Wix URLs.
 
 Shared pieces (header, footer, forms, slideshow, buttons, pictures and the motifs below) live in
 `src/components/`; images are in `public/img/`. Because this is a single-page app, the host must
-rewrite unknown paths to `index.html` for deep links to work.
+rewrite unknown paths to `index.html` for deep links to work; `vercel.json` does this on Vercel
+(static files still take precedence).
 
 ## Design
 

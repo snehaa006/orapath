@@ -1,4 +1,4 @@
-/* Orapath — static replica of the Wix site.
+/* Orapath — replica of the Wix site.
    Layout is measured from the original at a 1440px viewport: horizontal
    positions and widths are expressed as fractions of 1440 (so the page scales
    like the Wix grid does), vertical positions and heights are fixed pixels. */
@@ -162,6 +162,8 @@ form.sent .form-done { display: block; }
   font-size: 15px;
   line-height: 22.5px;
 }
+.register { background: #000; color: #fff; font: 300 14px/42px var(--avenir); text-align: center; }
+.read-more { padding: 12px 10px 0; color: #fff; font: 800 14px/17px var(--avenir); }
 .rule { border-top: 1px solid var(--grey); height: 5px; }
 .rule-blue { border-top-color: var(--blue); }
 
@@ -170,10 +172,10 @@ form.sent .form-done { display: block; }
 .slide.on { opacity: 1; visibility: visible; }
 .quote { font-size: 26px; line-height: 1.4; letter-spacing: -0.01em; }
 .quote-by { font-size: 20px; line-height: normal; }
-.arrow { --w: 53; --h: 18px; }
 .arrow svg { display: block; width: 53px; height: 15px; }
 .prev svg { transform: scaleX(-1); }
-.dots { position: absolute; top: 1177px; left: 50%; margin-left: -29px; display: flex; gap: 13px; align-items: center; height: 11px; }
+.arch { object-fit: cover; border-radius: 197px 197px 0 0; }
+.dots { position: absolute; top: 785px; left: 50%; margin-left: -29px; display: flex; gap: 13px; align-items: center; height: 11px; }
 .dot { width: 9px; height: 9px; display: flex; align-items: center; justify-content: center; }
 .dot::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #000; }
 .dot.on::before { width: 9px; height: 9px; background: none; box-shadow: inset 0 0 0 2px #000; }

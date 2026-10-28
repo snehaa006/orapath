@@ -1,37 +1,32 @@
 import { useLayoutEffect } from 'react';
 
-type Variant = 'img' | 'line' | 'fade' | 'up';
-
-const STAGGER_MS = 70;
-const MAX_STAGGER = 8;
+const STAGGER_MS = 80;
+const MAX_STAGGER = 6;
 // Longest reveal transition (the image curtain), plus a margin.
-const SETTLE_MS = 1600;
+const SETTLE_MS = 1700;
 
-function variant(el: HTMLElement): Variant {
-  if (el.tagName === 'IMG' || el.classList.contains('pic')) return 'img';
-  if (el.classList.contains('rule')) return 'line';
-  if (!el.textContent?.trim()) return 'fade'; // colour blocks behind text
-  return 'up';
-}
-
-function reset(el: HTMLElement) {
-  el.classList.remove('rv', 'rv-img', 'rv-line', 'rv-fade', 'rv-up', 'rv-in');
-  el.style.transitionDelay = '';
+/** Returns an element to its resting state: no reveal styles, so its own transitions apply again. */
+function settle(el: HTMLElement) {
+  el.removeAttribute('data-reveal');
+  el.classList.remove('is-in');
+  el.style.removeProperty('--delay');
 }
 
 /**
- * Fades positioned elements (`.a`) in as they scroll into view. Elements that
- * arrive together are staggered top-to-bottom. Once an element has settled its
- * reveal classes are removed, so its own hover transitions take over again and
- * the final layout is exactly the static one.
+ * Reveals elements marked `data-reveal="up|fade|left|right|scale|line|img|words"` as they scroll
+ * into view (the variants are styled in styles.css). Elements that arrive together are staggered
+ * top-to-bottom; `data-delay` adds a fixed delay in ms. Once an element has settled its reveal
+ * attribute is removed, so hover transitions take over and the resting layout is the static one.
  */
 export function useReveal(key: string) {
   useLayoutEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+    const els = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]:not(.is-in)'));
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+      els.forEach(settle);
+      return;
+    }
 
-    const pending = new Set<HTMLElement>();
-    const timers: number[] = [];
-
+    const settling = new Map<HTMLElement, number>();
     const io = new IntersectionObserver(
       (entries) => {
         const shown = entries
@@ -44,32 +39,29 @@ export function useReveal(key: string) {
           });
         shown.forEach((el, i) => {
           io.unobserve(el);
-          pending.delete(el);
-          const delay = Math.min(i, MAX_STAGGER) * STAGGER_MS;
-          el.style.transitionDelay = `${delay}ms`;
-          el.classList.add('rv-in');
-          timers.push(window.setTimeout(() => reset(el), delay + SETTLE_MS));
+          const delay = Number(el.dataset.delay ?? 0) + Math.min(i, MAX_STAGGER) * STAGGER_MS;
+          el.style.setProperty('--delay', `${delay}ms`);
+          el.classList.add('is-in');
+          settling.set(
+            el,
+            window.setTimeout(() => {
+              settling.delete(el);
+              settle(el);
+            }, delay + SETTLE_MS),
+          );
         });
       },
       // No inset margin: elements at the very bottom of the page must still be able to intersect.
       { threshold: 0 },
     );
-
-    document.querySelectorAll<HTMLElement>('main .a, .site-footer .a').forEach((el) => {
-      if (el.dataset.revealed !== undefined || el.classList.contains('no-rv') || el.parentElement?.closest('.a')) return;
-      el.dataset.revealed = '';
-      el.classList.add('rv', `rv-${variant(el)}`);
-      pending.add(el);
-      io.observe(el);
-    });
+    els.forEach((el) => io.observe(el));
 
     return () => {
       io.disconnect();
-      timers.forEach(clearTimeout);
-      // Anything not yet shown goes back to normal so a re-run can pick it up.
-      pending.forEach((el) => {
-        reset(el);
-        delete el.dataset.revealed;
+      // Anything mid-reveal jumps to its end state; anything not yet shown is picked up by the next run.
+      settling.forEach((timer, el) => {
+        clearTimeout(timer);
+        settle(el);
       });
     };
   }, [key]);

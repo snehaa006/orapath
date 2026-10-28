@@ -1,7 +1,8 @@
 # orapath
 
-React + TypeScript replica of the Orapath Wix site (https://alsalehyassmin.wixsite.com/orapath-1),
-built with Vite.
+React + TypeScript site for Orapath, built with Vite. It started as a replica of the Orapath Wix site
+(https://alsalehyassmin.wixsite.com/orapath-1) and has since been redesigned. It keeps that site's
+palette, copy and imagery on a responsive layout.
 
 ## Getting started
 
@@ -26,22 +27,36 @@ Paths match the original Wix URLs.
 | `/upcoming-events` | `src/pages/UpcomingEvents.tsx` |
 | `/contact` | `src/pages/Contact.tsx` |
 
-The header, footer, forms and testimonial slideshow live in `src/components/`; images are in
-`public/img/`. Because this is a single-page app, the host must rewrite unknown paths to
-`index.html` for deep links to work.
+Shared pieces (header, footer, forms, slideshow, buttons, pictures and the motifs below) live in
+`src/components/`; images are in `public/img/`. Because this is a single-page app, the host must
+rewrite unknown paths to `index.html` for deep links to work; `vercel.json` does this on Vercel
+(static files still take precedence).
 
-## Layout
+## Design
 
-Positions were measured from the live site at a 1440px viewport. Elements use the `.a` class with
-the `pos(x, y, w, h?)` helper from `src/lib/pos.ts`: `x`/`w` are pixels on a 1440 canvas (rendered
-as percentages, so the page scales horizontally like the Wix grid), `y`/`h` are fixed pixels.
+- **Colour:** the original blue `#5a70a0` and pink `#d7a7c1`, plus a deep shade (`--ink`) and light
+  tints (`--blush`, `--mist`) of them, defined at the top of `src/styles.css`.
+- **Type:** Fraunces (serif display, with pink italic accents) and DM Sans (body). Both are
+  self-hosted via `@fontsource-variable`.
+- **Motifs:** the concept comes from the logo and the name. The guiding star inside the logo's "O"
+  (`Star.tsx`, `Mark.tsx`) marks each step and session. Lines trace the path as you scroll: the hero
+  swoosh, the Educate - Guide - Empower path on Home, and the session timeline. Arched photo frames
+  and white cards overlapping photos carry over from the original layout.
+- **Layout:** normal responsive flow with a `.wrap` container, collapsing to one column on phones,
+  with a full-screen menu below 1080px.
 
 ## Motion
 
-Animation is layered on top of the measured layout and always settles back to it:
+All animation ends in the static layout and is switched off under `prefers-reduced-motion`.
 
-- `src/lib/reveal.ts` fades/slides each `.a` element in as it scrolls into view (images reveal with
-  a curtain, rules draw in, colour blocks fade), staggered top-to-bottom.
-- Hover states for nav, buttons, links, cards and events; the active page is underlined.
-- The testimonial slideshow pauses on hover/focus and responds to the arrow keys.
-- Everything is disabled under `prefers-reduced-motion`.
+- `src/lib/reveal.ts` reveals elements marked `data-reveal="up|fade|left|right|scale|line|img|words"`
+  as they scroll into view, staggered top-to-bottom: images rise behind a curtain, headings rise word
+  by word (`Words.tsx`).
+- `src/lib/scroll.ts` turns scroll position into CSS variables. `data-parallax` makes images drift
+  inside their frames. `data-progress` drives the word-by-word highlight of the mission statement
+  (`ScrollText.tsx`), the drawn path and its stars, the sliding kinetic type, and the timeline fill.
+- Page changes play a blue/pink curtain. The hero letters rise in as the logo's ring draws and its
+  star spins. A rotating badge, a marquee band, and a header that hides on scroll down round it out.
+- Hover states cover buttons (colour sweep), nav pills, the team list, event rows, and project cards
+  that tilt toward the pointer. The testimonial slideshow shows a progress bar, pauses on
+  hover/focus, and responds to arrow keys and swipes.

@@ -1,100 +1,117 @@
-import { Link } from 'react-router-dom';
-import { img, pos, usePageTitle } from '../lib/pos';
+import type { CSSProperties } from 'react';
+import { img, usePageTitle } from '../lib/page';
+import Btn from '../components/Btn';
+import PageHero from '../components/PageHero';
 import Pic from '../components/Pic';
+import Star from '../components/Star';
+import Words from '../components/Words';
 
-const statement = { fontSize: 19, lineHeight: '1.8em' } as const;
-const panelTitle = { fontSize: 45, lineHeight: 'normal' } as const;
+const statements = [
+  {
+    title: 'Why Was Orapath created?',
+    tone: 'blue',
+    text: 'As female saudi youth, we realized that there are many barriers between youth gaining experience or an idea of an industry of interest when deciding possible career paths. We have overcome these challenges by providing a network, and path for the youth to pursue their interests and gain an understanding of what the specific interest, from the perspective of a professional, might look like from the panel and workshop.',
+  },
+  {
+    title: 'Mission Statement',
+    tone: 'pink',
+    text: 'Orapath guides ambitious young women by providing industry specific mentorship, interactive panels, and workshops. Through enriching conversation, guidance, and support, we will equip the next generation of female leaders with the knowledge, and ambition they need to pursue their prospective goals.',
+  },
+  {
+    title: 'Vision Statement',
+    tone: 'blue',
+    tagline: 'Educate - Guide - Empower',
+    text: 'To cultivate an environment where young women are inspired, supported, and leading in their field of choice with a reliable network and community that champions their success.',
+  },
+];
 
 const team = [
-  { y: 2038, w: 482, name: 'Jane Doe - Founder' },
-  { y: 2090, w: 482, name: 'John Smith - Event Coordinator' },
-  { y: 2143, w: 503, name: 'Maria Garcia - Marketing Manager' },
-  { y: 2197, w: 482, name: 'David Wang - Technical Support' },
-  { y: 2250, w: 482, name: 'Sara Ali - Speaker Liaison' },
-  { y: 2304, w: 482, name: 'Lila Patel - Workshop Facilitator' },
+  'Jane Doe - Founder',
+  'John Smith - Event Coordinator',
+  'Maria Garcia - Marketing Manager',
+  'David Wang - Technical Support',
+  'Sara Ali - Speaker Liaison',
+  'Lila Patel - Workshop Facilitator',
 ];
 
 export default function About() {
   usePageTitle('About');
 
   return (
-    <main className="s" style={{ height: 3002 }}>
-      <Pic src={img('about-hero.jpg')} alt="" style={pos(0, 0, 1440, 534)} />
-      <section className="a" style={{ ...pos(377, 84, 678, 368), background: 'var(--blue)' }} />
-      <h1 className="a pink center" style={{ ...pos(436, 148, 566), fontSize: 56, lineHeight: 'normal' }}>
-        What is Orapath?
-      </h1>
-      <p className="a white center" style={{ ...pos(495, 255, 449), fontSize: 22, lineHeight: '1.8em', letterSpacing: '-0.01em' }}>
-        Orapath is a female led initiative that aims to inspire and guide ambitious female youth through panels and
-        workshops providing support for their endeavours.
-      </p>
+    <>
+      <PageHero image="about-hero.jpg" tone="blue">
+        <Words as="h1" text="What is *Orapath?*" />
+        <p>
+          Orapath is a female led initiative that aims to inspire and guide ambitious female youth through panels and
+          workshops providing support for their endeavours.
+        </p>
+      </PageHero>
 
-      <Pic src={img('about-left.jpg')} alt="" style={pos(16, 534, 284, 417)} />
-      <h2 className="a pink center" style={{ ...pos(423, 562, 584), fontSize: 41, lineHeight: 1.3, letterSpacing: '-0.01em' }}>
-        &nbsp;What do we aim to provide?&nbsp;
-      </h2>
-      <section className="a" style={{ ...pos(371, 641, 685, 257), background: 'var(--pink)' }} />
-      <p className="a center" style={{ ...pos(428, 682, 584), fontSize: 22, lineHeight: '1.5em', letterSpacing: '-0.01em' }}>
-        We aim to provide self development courses such as business mentorship from industry experts through panels and
-        workshops and Q&amp;A sessions with successful individuals.&nbsp;
-      </p>
-      <Pic src={img('about-right.jpg')} alt="" style={pos(1140, 534, 284, 417)} />
-      <Link className="a btn" to="/contact" style={pos(1260, 534, 154, 45)}>
-        Join Now
-      </Link>
+      <section className="wrap aim">
+        <Pic src={img('about-left.jpg')} className="arch aim-pic" parallax />
+        <div className="aim-body">
+          <Words text="What do we aim to *provide?*" />
+          <div className="aim-card" data-reveal="up">
+            <Star />
+            <p>
+              We aim to provide self development courses such as business mentorship from industry experts through panels
+              and workshops and Q&amp;A sessions with successful individuals.
+            </p>
+          </div>
+          <Btn to="/contact" reveal="up">
+            Join Now
+          </Btn>
+        </div>
+        <Pic src={img('about-right.jpg')} className="arch aim-pic aim-pic--low" parallax />
+      </section>
 
-      <section className="a" style={{ ...pos(1, 952, 718, 329), background: 'var(--blue)' }} />
-      <h2 className="a white" style={{ ...pos(73, 1072, 631), ...panelTitle }}>
-        Why Was Orapath created?
-      </h2>
-      <p className="a" style={{ ...pos(777, 1013, 665), ...statement }}>
-        As female saudi youth, we realized that there are many barriers between youth gaining &nbsp;experience or an idea
-        of an industry of interest when deciding possible career paths. &nbsp;We have overcome these challenges by providing
-        a network, and path for the youth to pursue their interests and gain an understanding of what the specific
-        interest, from the perspective of a professional, might look like from the panel and workshop.&nbsp;
-      </p>
-
-      <section className="a" style={{ ...pos(1, 1283, 718, 378), background: 'var(--pink)' }} />
-      <h2 className="a white" style={{ ...pos(152, 1438, 631), ...panelTitle }}>
-        Mission Statement
-      </h2>
-      <p className="a" style={{ ...pos(777, 1344, 665), ...statement, letterSpacing: '-0.01em' }}>
-        Orapath guides ambitious young women by providing industry specific mentorship, interactive panels, and workshops.
-        Through enriching conversation, guidance, and support, we will equip the next generation of female leaders with the
-        knowledge, and ambition they need to pursue their prospective goals.
-      </p>
-
-      <section className="a" style={{ ...pos(1, 1663, 718, 328), background: 'var(--blue)' }} />
-      <h2 className="a pink center" style={{ ...pos(-15, 1696, 738), fontSize: 33, lineHeight: 1.3, letterSpacing: '-0.01em' }}>
-        Educate - Guide - Empower
-      </h2>
-      <h2 className="a white" style={{ ...pos(171, 1793, 631), ...panelTitle }}>
-        Vision Statement
-      </h2>
-      <p className="a" style={{ ...pos(777, 1724, 665), ...statement, letterSpacing: '-0.01em' }}>
-        To cultivate an environment where young women are inspired, supported, and leading in their field of choice with a
-        reliable network and community that champions their success.
-      </p>
-
-      <h2 className="a pink" style={{ ...pos(26, 1992, 310), fontSize: 17, lineHeight: 1.3, letterSpacing: '-0.01em' }}>
-        Meet Our Team
-      </h2>
-      <div className="pink" style={{ fontSize: 33, lineHeight: 1.3, letterSpacing: '-0.03em' }}>
-        {team.map((m) => (
-          <p key={m.name} className="a" style={pos(26, m.y, m.w)}>
-            {m.name}
-          </p>
+      <section className="wrap stack">
+        {statements.map((s, i) => (
+          <article key={s.title} className={`stack-card stack-card--${s.tone}`} style={{ '--i': i } as CSSProperties}>
+            <div className="stack-head">
+              <span className="stack-num">0{i + 1}</span>
+              {s.tagline && <p className="stack-tagline">{s.tagline}</p>}
+              <h2>{s.title}</h2>
+            </div>
+            <p className="stack-text">{s.text}</p>
+            <Star className="stack-star" />
+          </article>
         ))}
-      </div>
-      <p className="a" style={{ ...pos(26, 2774, 482), fontSize: 15, lineHeight: 1.5, letterSpacing: '-0.01em' }}>
-        Our dedicated team is committed to ensuring that Orapath delivers a world-class experience to all participants. We
-        bring together a diverse group of professionals who are passionate about empowering women and creating a supportive
-        environment for growth and success.
-      </p>
-      <Link className="a btn" to="/contact" style={pos(26, 2914, 154, 45)}>
-        Join Us
-      </Link>
-      <Pic src={img('team.jpg')} alt="" style={pos(720, 1992, 694, 970)} />
-    </main>
+      </section>
+
+      <section className="wrap team">
+        <div className="team-copy">
+          <h2 className="eyebrow" data-reveal="up">
+            <Star /> Meet Our Team
+          </h2>
+          <ul className="team-list">
+            {team.map((member, i) => {
+              const [name, role] = member.split(' - ');
+              return (
+                <li key={member} data-reveal="up">
+                  <span className="team-num">0{i + 1}</span>
+                  <span className="team-name">{name}</span>
+                  <span className="team-role">
+                    <span className="sr-only"> - </span>
+                    {role}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+          <p className="team-text" data-reveal="up">
+            Our dedicated team is committed to ensuring that Orapath delivers a world-class experience to all participants.
+            We bring together a diverse group of professionals who are passionate about empowering women and creating a
+            supportive environment for growth and success.
+          </p>
+          <Btn to="/contact" reveal="up">
+            Join Us
+          </Btn>
+        </div>
+        <div className="team-visual">
+          <Pic src={img('team.jpg')} className="arch team-pic" parallax />
+        </div>
+      </section>
+    </>
   );
 }

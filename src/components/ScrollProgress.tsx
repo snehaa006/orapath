@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-// Thin pink bar along the top of the window showing how far down the page you are.
+// Thin blue-to-pink bar along the top of the window showing how far down the page you are.
 export default function ScrollProgress() {
   const bar = useRef<HTMLDivElement>(null);
 

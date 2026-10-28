@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { img, pos, usePageTitle } from '../lib/pos';
+import Pic from '../components/Pic';
 
 const statement = { fontSize: 19, lineHeight: '1.8em' } as const;
 const panelTitle = { fontSize: 45, lineHeight: 'normal' } as const;
@@ -18,7 +19,7 @@ export default function About() {
 
   return (
     <main className="s" style={{ height: 3002 }}>
-      <img className="a cover" src={img('about-hero.jpg')} alt="" style={pos(0, 0, 1440, 534)} />
+      <Pic src={img('about-hero.jpg')} alt="" style={pos(0, 0, 1440, 534)} />
       <section className="a" style={{ ...pos(377, 84, 678, 368), background: 'var(--blue)' }} />
       <h1 className="a pink center" style={{ ...pos(436, 148, 566), fontSize: 56, lineHeight: 'normal' }}>
         What is Orapath?
@@ -28,7 +29,7 @@ export default function About() {
         workshops providing support for their endeavours.
       </p>
 
-      <img className="a cover" src={img('about-left.jpg')} alt="" style={pos(16, 534, 284, 417)} />
+      <Pic src={img('about-left.jpg')} alt="" style={pos(16, 534, 284, 417)} />
       <h2 className="a pink center" style={{ ...pos(423, 562, 584), fontSize: 41, lineHeight: 1.3, letterSpacing: '-0.01em' }}>
         &nbsp;What do we aim to provide?&nbsp;
       </h2>
@@ -37,7 +38,7 @@ export default function About() {
         We aim to provide self development courses such as business mentorship from industry experts through panels and
         workshops and Q&amp;A sessions with successful individuals.&nbsp;
       </p>
-      <img className="a cover" src={img('about-right.jpg')} alt="" style={pos(1140, 534, 284, 417)} />
+      <Pic src={img('about-right.jpg')} alt="" style={pos(1140, 534, 284, 417)} />
       <Link className="a btn" to="/contact" style={pos(1260, 534, 154, 45)}>
         Join Now
       </Link>
@@ -93,7 +94,7 @@ export default function About() {
       <Link className="a btn" to="/contact" style={pos(26, 2914, 154, 45)}>
         Join Us
       </Link>
-      <img className="a cover" src={img('team.jpg')} alt="" style={pos(720, 1992, 694, 970)} />
+      <Pic src={img('team.jpg')} alt="" style={pos(720, 1992, 694, 970)} />
     </main>
   );
 }

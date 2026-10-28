@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { img, pos, usePageTitle } from '../lib/pos';
+import Pic from '../components/Pic';
 
 const body = { fontSize: 15, lineHeight: '1.8em', letterSpacing: '-0.01em' } as const;
 const heading = { fontSize: 30, lineHeight: 'normal' } as const;
@@ -9,7 +10,7 @@ export default function PanelSessions() {
 
   return (
     <main className="s" style={{ height: 2258 }}>
-      <img className="a cover" src={img('panel-hero.jpg')} alt="" style={pos(0, 0, 1440, 446)} />
+      <Pic src={img('panel-hero.jpg')} alt="" style={pos(0, 0, 1440, 446)} />
       <section className="a" style={{ ...pos(230, 124, 980, 348), background: '#fff' }} />
       <h1 className="a pink" style={{ ...pos(358, 204, 750), fontSize: 56, lineHeight: 'normal' }}>
         Panel Sessions
@@ -21,7 +22,7 @@ export default function PanelSessions() {
       </p>
       <div className="a rule rule-blue" style={pos(230, 459, 980)} />
 
-      <img className="a cover" src={img('riham.jpg')} alt="Panel session with Riham Alawaji" style={pos(271, 613, 378, 283)} />
+      <Pic src={img('riham.jpg')} alt="Panel session with Riham Alawaji" style={pos(271, 613, 378, 283)} />
       <p className="a" style={{ ...pos(710, 613, 200), ...heading }}>
         <Link className="u" to="/session-1">
           01
@@ -54,10 +55,10 @@ export default function PanelSessions() {
           the attendees to truly harness and utilize their newly learned knowledge by answering questions.
         </span>
       </p>
-      <img className="a cover" src={img('nadia.jpg')} alt="Panel session with Nadia Almutlak" style={pos(792, 1011, 378, 283)} />
+      <Pic src={img('nadia.jpg')} alt="Panel session with Nadia Almutlak" style={pos(792, 1011, 378, 283)} />
       <div className="a rule" style={pos(230, 1445, 980)} />
 
-      <img className="a cover" src={img('orapath-logo.jpg')} alt="Orapath" style={pos(276, 1583, 401, 167)} />
+      <Pic src={img('orapath-logo.jpg')} alt="Orapath" style={pos(276, 1583, 401, 167)} />
       <p className="a" style={{ ...pos(710, 1554, 277), ...heading }}>
         03 - Coming Soon
       </p>

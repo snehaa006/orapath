@@ -1,4 +1,5 @@
 import { img, pos, usePageTitle } from '../lib/pos';
+import Pic from '../components/Pic';
 
 const events = [
   { y: 161, image: 'event-1.jpg', title: 'EmpowerHer Interactive Skill-Building Workshop', action: 'Buy Tickets', actionWidth: 120 },
@@ -17,8 +18,8 @@ export default function UpcomingEvents() {
       </h1>
       <div className="a rule rule-blue" style={pos(30, events[0].y, 1380, 1)} />
       {events.map((e) => (
-        <div key={e.title}>
-          <img className="a cover" src={img(e.image)} alt="" style={pos(30, e.y + 31, 355, 200)} />
+        <div key={e.title} className="event">
+          <Pic src={img(e.image)} alt="" style={pos(30, e.y + 31, 355, 200)} />
           <p className="a" style={{ ...pos(410, e.y + 101, 880), fontSize: 16, lineHeight: '24px' }}>
             24 juin 2035, 13:06 – 15:06
           </p>

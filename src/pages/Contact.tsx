@@ -1,12 +1,13 @@
 import SubmitForm from '../components/SubmitForm';
 import { img, pos, usePageTitle } from '../lib/pos';
+import Pic from '../components/Pic';
 
 export default function Contact() {
   usePageTitle('Contact');
 
   return (
     <main className="s" style={{ height: 749 }}>
-      <img className="a cover" src={img('contact.jpg')} alt="" style={pos(25, 25, 695, 699)} />
+      <Pic src={img('contact.jpg')} alt="" style={pos(25, 25, 695, 699)} />
       <section className="a" style={{ ...pos(156, 252, 431, 245), background: '#fff' }} />
       <h1 className="a pink" style={{ ...pos(172, 273, 310), fontSize: 17, lineHeight: 1.3, letterSpacing: '-0.01em' }}>
         Get in Touch

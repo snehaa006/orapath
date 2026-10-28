@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { img, pos, usePageTitle } from '../lib/pos';
+import Pic from '../components/Pic';
 
 export default function Home() {
   usePageTitle('Home');
@@ -7,8 +8,10 @@ export default function Home() {
   return (
     <main className="s" style={{ height: 1315 }}>
       <section className="a" style={{ ...pos(0, 0, 1440, 412), background: 'var(--hero)' }} />
-      <h1 className="a pink center" style={{ ...pos(230, 87, 980), fontSize: 130, lineHeight: '130px' }}>
-        <span style={{ letterSpacing: '0.15em' }}>ORAPATH</span>
+      <h1 className="a pink center no-rv" style={{ ...pos(230, 87, 980), fontSize: 130, lineHeight: '130px' }}>
+        <span className="track-in" style={{ letterSpacing: '0.15em' }}>
+          ORAPATH
+        </span>
       </h1>
       <p className="a white center" style={{ ...pos(405, 237, 629), fontSize: 15, lineHeight: '28.8px', letterSpacing: '-0.16px' }}>
         Orapath is a female led initiative that aims &nbsp;to inspire and guide ambitious female youth through panels and
@@ -18,7 +21,7 @@ export default function Home() {
         Register Now
       </a>
 
-      <img className="a cover" src={img('mission-banner.jpg')} alt="" style={pos(0, 412, 1440, 292)} />
+      <Pic src={img('mission-banner.jpg')} alt="" style={pos(0, 412, 1440, 292)} />
       <h2 className="a" style={{ ...pos(10, 453, 262), fontSize: 28, lineHeight: 1.4, letterSpacing: '-0.01em' }}>
         Our Mission &amp; Vision
       </h2>

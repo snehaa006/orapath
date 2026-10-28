@@ -1,5 +1,6 @@
 import Slideshow, { type Testimonial } from '../components/Slideshow';
 import { img, pos, usePageTitle } from '../lib/pos';
+import Pic from '../components/Pic';
 
 const testimonials: Testimonial[] = [
   {
@@ -64,7 +65,7 @@ export default function Session() {
 
   return (
     <main className="s" style={{ height: 2840 }}>
-      <img className="a cover" src={img('session-hero.jpg')} alt="" style={pos(230, 40, 980, 352)} />
+      <Pic src={img('session-hero.jpg')} alt="" style={pos(230, 40, 980, 352)} />
       <div className="a" style={{ ...pos(473, 166, 494, 100), background: '#fff' }} />
       <h1 className="a pink center" style={{ ...pos(490, 182, 460), fontSize: 56, lineHeight: 'normal' }}>
         Session with ***
@@ -80,7 +81,7 @@ export default function Session() {
           <p className="a" style={{ ...pos(p.x, p.y + 46, 345), fontSize: 16, lineHeight: '1.6em', letterSpacing: '-0.01em' }}>
             {p.text}
           </p>
-          <img className="a cover" src={img(p.image)} alt="" style={pos(p.x, p.imageY, 358, 212)} />
+          <Pic src={img(p.image)} alt="" style={pos(p.x, p.imageY, 358, 212)} />
         </div>
       ))}
     </main>

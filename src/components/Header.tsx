@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import type { CSSProperties } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
 const rows = [
   [
@@ -13,24 +14,28 @@ const rows = [
   ],
 ];
 
+// --i staggers the entrance animation from left to right.
+const order = (i: number) => ({ '--i': i }) as CSSProperties;
+
 export default function Header() {
+  let n = 1;
   return (
     <header className="s site-header">
-      <p className="a logo">
+      <p className="a logo" style={order(0)}>
         <Link to="/">ORAPATH</Link>
       </p>
       <nav className="menu" aria-label="Site">
         {rows.map((row, i) => (
           <div key={i}>
             {row.map((item) => (
-              <Link key={item.to} to={item.to}>
+              <NavLink key={item.to} to={item.to} end style={order(n++)}>
                 {item.label}
-              </Link>
+              </NavLink>
             ))}
           </div>
         ))}
       </nav>
-      <button className="login" type="button">
+      <button className="login" type="button" style={order(n)}>
         Log In
       </button>
     </header>

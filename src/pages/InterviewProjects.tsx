@@ -1,4 +1,5 @@
 import { img, pos, usePageTitle } from '../lib/pos';
+import Pic from '../components/Pic';
 
 const cards = [
   { x: 128, y: 187, image: 'zero-carbon.jpg', title: 'Zero Carbon World' },
@@ -16,8 +17,8 @@ export default function InterviewProjects() {
         Projects
       </h1>
       {cards.map(({ x, y, image, title }) => (
-        <div key={title}>
-          <img className="a cover" src={img(image)} alt="" style={pos(x, y, 509, 403)} />
+        <div key={title} className="card">
+          <Pic src={img(image)} alt="" style={pos(x, y, 509, 403)} />
           <div className="a" style={{ ...pos(x - 81, y + 77, 350, 290), background: '#fff' }} />
           <h2 className="a pink" style={{ ...pos(x - 37, y + 108, 280), fontSize: 26, lineHeight: 1.4 }}>
             {title}

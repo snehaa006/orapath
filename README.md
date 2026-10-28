@@ -35,3 +35,13 @@ The header, footer, forms and testimonial slideshow live in `src/components/`; i
 Positions were measured from the live site at a 1440px viewport. Elements use the `.a` class with
 the `pos(x, y, w, h?)` helper from `src/lib/pos.ts`: `x`/`w` are pixels on a 1440 canvas (rendered
 as percentages, so the page scales horizontally like the Wix grid), `y`/`h` are fixed pixels.
+
+## Motion
+
+Animation is layered on top of the measured layout and always settles back to it:
+
+- `src/lib/reveal.ts` fades/slides each `.a` element in as it scrolls into view (images reveal with
+  a curtain, rules draw in, colour blocks fade), staggered top-to-bottom.
+- Hover states for nav, buttons, links, cards and events; the active page is underlined.
+- The testimonial slideshow pauses on hover/focus and responds to the arrow keys.
+- Everything is disabled under `prefers-reduced-motion`.
